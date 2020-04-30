@@ -1,0 +1,102 @@
+<template>
+	<div class="form">
+		<div class="controls">
+
+			<div class="input">
+				<label for="input-res">Res</label>
+				<input id="input-res" v-model="resource" />
+			</div>
+
+			<div class="columns">
+				<div class="col">
+					<div class="input">
+						<label for="input-env">Env</label>
+						<select id="input-env" v-model="env">
+							<option disabled>Choose env</option>
+							<option value="prod">Prod</option>
+							<option value="test">Test</option>
+							<option value="dev">Dev</option>
+							<option value="sandbox">Sandbox</option>
+							<option value="local">Local</option>
+						</select>
+					</div>
+				</div>
+				<div class="col">
+					<div class="input">
+						<label for="input-limit">Limit</label>
+						<input id="input-limit" v-model="limit" />
+					</div>
+				</div>
+			</div>
+
+			<div class="columns offset">
+				<div class="col">
+
+					<div class="input">
+						<label for="input-format">Format</label>
+						<select id="input-format" v-model="format">
+							<option disabled>Choose format</option>
+							<option value="lines">Lines</option>
+							<option value="semis">Lines w/ semis</option>
+							<option value="commas">Lines w/ commas</option>
+							<option value="jsarr">JS array</option>
+							<option value="jsonarr">JSON array</option>
+							<option value="jsonobj">JSON object</option>
+						</select>
+					</div>
+
+				</div>
+				<div class="col">
+
+					<div class="action fill">
+						<button @click="generate">Refresh</button>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+		<output-area :items="items" :format="format" />
+
+	</div>
+</template>
+
+<script>
+import { ipcRenderer } from 'electron';
+import OutputArea from './OutputArea';
+
+export default {
+	props: {
+		items: {
+			type: Array,
+			required: true,
+		},
+	},
+	components: {
+		OutputArea,
+	},
+	data: () => ({
+		env: 'prod',
+		resource: 'mything',
+		limit: '10',
+		format: 'lines',
+	}),
+	mounted() {
+		this.generate();
+	},
+	watch: {
+		env() { this.generate(); },
+		resource() { this.generate(); },
+		limit() { this.generate(); },
+	},
+	methods: {
+		generate() {
+			ipcRenderer.send('generate-ksuids', {
+				resource: this.resource,
+				env: this.env,
+				limit: parseInt(this.limit, 10),
+			});
+		},
+	},
+}
+</script>

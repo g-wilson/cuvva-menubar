@@ -1,0 +1,120 @@
+.form {
+	display: flex;
+	flex-direction: column;
+	align-items: space-between;
+	flex: 1;
+}
+
+.controls {
+	padding: 15px;
+	height: auto;
+}
+
+input, button, textarea, label, select {
+	font-family: $fonts;
+	color: black;
+}
+
+.action {
+	button {
+		color: white;
+		text-shadow: 0 -1px 0 #081;
+		font-weight: bold;
+		cursor: pointer;
+		outline: none;
+		font-size: 0.9rem;
+		padding: 7px 10px;
+		border-radius: 5px;
+		background: #1B3;
+		border: none;
+		border-bottom: 3px solid #081;
+
+		&:active {
+			margin-top: 2px;
+			border-bottom-width: 2px;
+			margin-bottom: -1px;
+		}
+	}
+
+	&.fill button {
+		display: block;
+		width: 100%;
+	}
+}
+
+.input {
+	background: #EEE;
+	border-radius: 5px;
+	border: 1px solid #CCC;
+	display: flex;
+	flex-direction: row;
+	margin-bottom: 8px;
+	height: 30px;
+
+	&:last-of-type {
+		margin-bottom: 0;
+	}
+
+	label {
+		display: block;
+		text-transform: uppercase;
+		font-size: 0.75rem;
+		line-height: 1em;
+		font-weight: bold;
+		text-align: center;
+		border-right: 1px solid #CCC;
+		width: 65px;
+		padding: 9px 0 0 0;
+		color: #333;
+		text-shadow: 0 1px 0 #FFF;
+	}
+
+	input {
+		min-width: 0;
+		display: block;
+		background: #FFF;
+		padding: 5px 10px;
+		font-size: 1rem;
+		line-height: 1em;
+		border-radius: 0 5px 5px 0;
+		border: none;
+		flex: 1;
+	}
+
+	select {
+		display: block;
+		background: #FFF;
+		padding: 6px 10px;
+		font-size: 0.9rem;
+		line-height: 1em;
+		border: none;
+		flex: 1;
+	}
+}
+
+.columns {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	margin-bottom: 8px;
+
+	&.offset > .col {
+		&:first-child {
+			width: 70%;
+		}
+		&:last-child {
+			width: 30%;
+		}
+	}
+
+	&>.col {
+		width: 50%;
+
+		&:first-child {
+			padding-right: 4px;
+		}
+		&:last-child {
+			padding-left: 4px;
+		}
+	}
+}
