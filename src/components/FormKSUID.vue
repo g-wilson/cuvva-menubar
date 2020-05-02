@@ -62,8 +62,8 @@
 </template>
 
 <script>
-import { ipcRenderer } from 'electron';
 import OutputArea from './OutputArea';
+import { ipcRenderer } from 'electron';
 
 export default {
 	props: {
@@ -81,13 +81,19 @@ export default {
 		limit: '10',
 		format: 'lines',
 	}),
-	mounted() {
+	created() {
 		this.generate();
 	},
 	watch: {
-		env() { this.generate(); },
-		resource() { this.generate(); },
-		limit() { this.generate(); },
+		env() {
+			this.generate();
+		},
+		resource() {
+			this.generate();
+		},
+		limit() {
+			this.generate();
+		},
 	},
 	methods: {
 		generate() {
@@ -98,5 +104,5 @@ export default {
 			});
 		},
 	},
-}
+};
 </script>

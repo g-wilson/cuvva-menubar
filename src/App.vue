@@ -1,10 +1,7 @@
 <template>
-	<div id="app" :class="{ 'has-error': Boolean(error) }">
+	<div id="app" class="app-wrap" :class="{ 'has-error': Boolean(error) }">
 
-		<div class="tabs">
-			<div @click="changeTab('ksuids')" :class="{ active: activeTab === 'ksuids' }"><span>KSUIDs</span></div>
-			<div @click="changeTab('tokens')" :class="{ active: activeTab === 'tokens' }"><span>Tokens</span></div>
-		</div>
+		<tabs v-model="activeTab" :tabs="tabs" />
 
 		<form-ksuid :items="items" v-if="activeTab === 'ksuids'" />
 		<form-token :items="items" v-if="activeTab === 'tokens'" />
@@ -13,18 +10,23 @@
 </template>
 
 <script>
-import { ipcRenderer } from 'electron';
-
 import FormKsuid from './components/FormKSUID';
 import FormToken from './components/FormToken';
+import Tabs from './components/Tabs';
+import { ipcRenderer } from 'electron';
 
 export default {
 	name: 'KsuidMenubar',
 	components: {
+		Tabs,
 		FormKsuid,
 		FormToken,
 	},
 	data: () => ({
+		tabs: [
+			{ handle: 'ksuids', label: 'KSUIDs' },
+			{ handle: 'tokens', label: 'Tokens' },
+		],
 		activeTab: 'ksuids',
 		items: [],
 		error: null,
@@ -34,16 +36,10 @@ export default {
 			this.error = null;
 			this.items = items;
 		});
-
 		ipcRenderer.on('error', (event, e) => {
 			this.error = e;
 			this.items = [];
 		});
-	},
-	methods: {
-		changeTab(tab) {
-			this.activeTab = tab;
-		},
 	},
 };
 </script>
@@ -54,25 +50,17 @@ export default {
 @import './scss/global';
 @import './scss/forms';
 
-.tabs {
-	background: darken($backgroundColor, 30%);
+.app-wrap {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
 	display: flex;
-	flex-direction: row;
+	flex-direction: column;
 
-	&> div {
-		background: darken($backgroundColor, 15%);
-		padding: 6px 12px;
-		margin-right: 1px;
-		cursor: pointer;
-
-		&.active {
-			background: $backgroundColor;
-		}
-
-		&> span {
-			font-weight: bold;
-			cursor: pointer;
-		}
+	&.has-error {
+		background: rgb(218, 57, 57);
 	}
 }
 </style>

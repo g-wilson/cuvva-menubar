@@ -28,22 +28,30 @@ export default {
 		formatItem(str, isLast) {
 			switch (this.format) {
 				case 'semis':
-					if (isLast) return str;
+					if (isLast)
+						return str;
+
 					return `${str};`;
 
 				case 'commas':
 					return `${str},`;
 
 				case 'jsarr':
-					if (isLast) return `'${str}'`;
+					if (isLast)
+						return `'${str}'`;
+
 					return `'${str}',`;
 
 				case 'jsonarr':
-					if (isLast) return `"${str}"`;
+					if (isLast)
+						return `"${str}"`;
+
 					return `"${str}",`;
 
 				case 'jsonobj':
-					if (isLast) return `"${str}": ""`;
+					if (isLast)
+						return `"${str}": ""`;
+
 					return `"${str}": "",`;
 
 				case 'lines':
@@ -52,7 +60,7 @@ export default {
 			}
 		},
 	},
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -60,12 +68,10 @@ export default {
 @import '../scss/mixins';
 
 .output {
-	@include selectable;
-	flex: 1;
+	max-height: 100%;
 	background: white;
 	color: #333;
 	border-top: 1px solid #999;
-	user-select: initial;
 	overflow-x: hidden;
 	overflow-y: scroll;
 

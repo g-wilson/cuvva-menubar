@@ -11,17 +11,6 @@ body {
 	font-family: $fonts;
 	background: $backgroundColor; /* Cuvva blue */
 	color: $foregroundColor;
-	@include no-select;
-}
-
-#app {
-	height: 100vh;
-	display: flex;
-	flex-direction: column;
-
-	&.has-error {
-		background: rgb(218, 57, 57);
-	}
 }
 
 img {
