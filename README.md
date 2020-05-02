@@ -1,18 +1,21 @@
 # cuvva-menubar
 
 ## Project setup
+
+Compatible with Vue CLI and UI.
+
 ```
 yarn install
 ```
 
-### Compiles and hot-reloads for development
+### Development
 ```
-yarn serve
+yarn electron:serve
 ```
 
-### Compiles and minifies for production
+### Build
 ```
-yarn build
+yarn electron:build
 ```
 
 ### Lints and fixes files

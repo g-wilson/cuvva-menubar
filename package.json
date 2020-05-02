@@ -1,6 +1,7 @@
 {
   "name": "cuvva-menubar",
   "version": "0.1.0",
+  "author": "George Wilson <george@g-wilson.co.uk>",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",

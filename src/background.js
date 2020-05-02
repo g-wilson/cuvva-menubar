@@ -56,8 +56,8 @@ function getWindowURL() {
 	if (process.env.WEBPACK_DEV_SERVER_URL)
 		return process.env.WEBPACK_DEV_SERVER_URL;
 
-	createProtocol('app');
+	createProtocol('cuvva-menubar');
 
 	// Load the index.html when not in development
-	return 'app://./index.html';
+	return 'cuvva-menubar://./index.html';
 }
