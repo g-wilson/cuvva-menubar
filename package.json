@@ -15,15 +15,15 @@
   "vue": {
     "pluginOptions": {
       "electronBuilder": {
-        "customFileProtocol": "cuvvamenubar://./"
+        "customFileProtocol": "cuvvamenubar://./",
+        "builderOptions": {
+          "appId": "com.gwhizzl.cuvva-menubar",
+          "productName": "Cuvva Menubar",
+          "mac": {
+            "category": "public.app-category.developer-tools"
+          }
+        }
       }
-    }
-  },
-  "build": {
-    "appId": "com.gwhizzl.cuvva-menubar",
-    "productName": "Cuvva Menubar",
-    "mac": {
-      "category": "public.app-category.developer-tools"
     }
   },
   "main": "background.js",
