@@ -19,6 +19,13 @@
       }
     }
   },
+  "build": {
+    "appId": "com.gwhizzl.cuvva-menubar",
+    "productName": "Cuvva Menubar",
+    "mac": {
+      "category": "public.app-category.developer-tools"
+    }
+  },
   "main": "background.js",
   "dependencies": {
     "core-js": "^3.6.4",
